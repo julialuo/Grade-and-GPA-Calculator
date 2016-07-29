@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.juliazluo.www.gradeandgpacalculator.IntroActivity" />
         </activity>
+        <activity
+            android:name=".GradesActivity"
+            android:label="@string/title_activity_grades"
+            android:parentActivityName=".CoursesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.juliazluo.www.gradeandgpacalculator.CoursesActivity" />
+        </activity>
     </application>
 
 </manifest>
