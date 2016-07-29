@@ -1,5 +1,6 @@
 package com.juliazluo.www.gradeandgpacalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,9 +17,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CoursesActivity extends AppCompatActivity {
-
+    
     ArrayList<String> courseNames = new ArrayList<String>();
     ArrayAdapter adapter;
+    public static String COURSE_NAME = "com.juliazluo.www.gradeandgpacalculator.COURSE_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,8 @@ public class CoursesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Courses");
 
-        courseNames.add("Science");
-        courseNames.add("Math");
         adapter = new ArrayAdapter<String>(this, R.layout.courses_list_item, courseNames);
         ListView listView = (ListView) findViewById(R.id.courses_list);
         listView.setAdapter(adapter);
@@ -41,8 +42,9 @@ public class CoursesActivity extends AppCompatActivity {
                                     long id) {
 
                 String item = ((TextView)view).getText().toString();
-
-
+                Intent intent = new Intent(CoursesActivity.this, GradesActivity.class);
+                intent.putExtra(COURSE_NAME, item);
+                startActivity(intent);
             }
         });
 
