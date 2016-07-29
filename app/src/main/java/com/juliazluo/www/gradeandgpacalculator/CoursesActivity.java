@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CoursesActivity extends AppCompatActivity {
-    
+
     ArrayList<String> courseNames = new ArrayList<String>();
     ArrayAdapter adapter;
     public static String COURSE_NAME = "com.juliazluo.www.gradeandgpacalculator.COURSE_NAME";
