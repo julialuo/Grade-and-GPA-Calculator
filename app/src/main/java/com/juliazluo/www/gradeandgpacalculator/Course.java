@@ -7,14 +7,17 @@ public class Course {
 
     private long id;
     private String name;
+    private int average; //MAKE THIS DOUBLE IF DATABASE ALLOWS
 
-    public Course(long id, String name) {
+    public Course(long id, String name, int average) {
         this.id = id;
         this.name = name;
+        this.average = average;
     }
 
-    public Course(String name) {
+    public Course(String name, int average) {
         this.name = name;
+        this.average = average;
     }
 
     public long getId() {
@@ -23,6 +26,14 @@ public class Course {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getAverage() {
+        return average;
+    }
+
+    public void setAverage(int average) {
+        this.average = average;
     }
 
     public String getName() {

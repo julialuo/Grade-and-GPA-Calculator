@@ -8,7 +8,7 @@ public class Grade {
     private long id;
     private long courseID;
     private String assignmentName;
-    private int grade;
+    private int grade; //MAKE THIS DOUBLE IF DATABASE ALLOWS
     private int weight;
 
     public Grade(long courseID, String assignmentName, int grade, int weight) {
