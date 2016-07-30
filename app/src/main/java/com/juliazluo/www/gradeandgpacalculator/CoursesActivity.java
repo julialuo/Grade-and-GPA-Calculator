@@ -18,9 +18,11 @@ import java.util.ArrayList;
 
 public class CoursesActivity extends AppCompatActivity {
 
+    ArrayList<Course> courses = new ArrayList<Course>();
     ArrayList<String> courseNames = new ArrayList<String>();
     ArrayAdapter adapter;
-    public static String COURSE_NAME = "com.juliazluo.www.gradeandgpacalculator.COURSE_NAME";
+    public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,13 @@ public class CoursesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Courses");
 
+        db = new DatabaseHelper(this);
+        courses = db.getAllCourses();
+
+        for(Course course: courses) {
+            courseNames.add(course.getName());
+        }
+
         adapter = new ArrayAdapter<String>(this, R.layout.courses_list_item, courseNames);
         ListView listView = (ListView) findViewById(R.id.courses_list);
         listView.setAdapter(adapter);
@@ -41,9 +50,9 @@ public class CoursesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                String item = ((TextView)view).getText().toString();
+                Course course = courses.get(position);
                 Intent intent = new Intent(CoursesActivity.this, GradesActivity.class);
-                intent.putExtra(COURSE_NAME, item);
+                intent.putExtra(COURSE_ID, course.getId());
                 startActivity(intent);
             }
         });
@@ -74,6 +83,8 @@ public class CoursesActivity extends AppCompatActivity {
     public void addCourse(View view) {
         EditText editText = (EditText) findViewById(R.id.edit_course_name);
         String courseName = editText.getText().toString();
+        db.addCourse(courseName);
+        courses = db.getAllCourses();
         courseNames.add(courseName);
         adapter.notifyDataSetChanged();
         cancelAdd(view);
