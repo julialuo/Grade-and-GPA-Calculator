@@ -6,13 +6,22 @@ package com.juliazluo.www.gradeandgpacalculator;
 public class Grade {
 
     private long id;
-    private Course course;
+    private long courseID;
     private String assignmentName;
     private int grade;
     private int weight;
 
-    public Grade(Course course, String assignmentName, int grade, int weight) {
-        this.course = course;
+    public Grade(long courseID, String assignmentName, int grade, int weight) {
+        this.courseID = courseID;
+        this.assignmentName = assignmentName;
+        this.grade = grade;
+        this.weight = weight;
+    }
+
+    public Grade(long id, long courseID, String assignmentName, int grade, int weight) {
+
+        this.id = id;
+        this.courseID = courseID;
         this.assignmentName = assignmentName;
         this.grade = grade;
         this.weight = weight;
@@ -26,12 +35,12 @@ public class Grade {
         this.id = id;
     }
 
-    public Course getCourse() {
-        return course;
+    public long getCourseID() {
+        return courseID;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseID(long courseID) {
+        this.courseID = courseID;
     }
 
     public String getAssignmentName() {

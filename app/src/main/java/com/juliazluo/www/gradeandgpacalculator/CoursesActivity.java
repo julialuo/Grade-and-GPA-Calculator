@@ -21,8 +21,8 @@ public class CoursesActivity extends AppCompatActivity {
     ArrayList<Course> courses = new ArrayList<Course>();
     ArrayList<String> courseNames = new ArrayList<String>();
     ArrayAdapter adapter;
-    public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
     DatabaseHelper db;
+    public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +81,8 @@ public class CoursesActivity extends AppCompatActivity {
     }
 
     public void addCourse(View view) {
-        EditText editText = (EditText) findViewById(R.id.edit_course_name);
-        String courseName = editText.getText().toString();
+        EditText editCourseName = (EditText) findViewById(R.id.edit_course_name);
+        String courseName = editCourseName.getText().toString();
         db.addCourse(courseName);
         courses = db.getAllCourses();
         courseNames.add(courseName);
