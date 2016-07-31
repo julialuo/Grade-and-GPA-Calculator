@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -67,14 +65,14 @@ public class CoursesActivity extends AppCompatActivity {
         LinearLayout newCourseBtn = (LinearLayout) findViewById(R.id.new_course_btn);
         coursesLayout.removeView(newCourseBtn);
 
-        View addCourseView = LayoutInflater.from(this).inflate(R.layout.add_course_prompt, coursesLayout, false);
-        coursesLayout.addView(addCourseView);
+        View newCourseView = LayoutInflater.from(this).inflate(R.layout.new_course_prompt, coursesLayout, false);
+        coursesLayout.addView(newCourseView);
     }
 
     public void cancelAdd(View view) {
         LinearLayout coursesLayout = (LinearLayout) findViewById(R.id.courses);
-        LinearLayout addCourseView = (LinearLayout) findViewById(R.id.add_course_prompt);
-        coursesLayout.removeView(addCourseView);
+        LinearLayout newCourseView = (LinearLayout) findViewById(R.id.new_course_prompt);
+        coursesLayout.removeView(newCourseView);
 
         View newCourseBtn = LayoutInflater.from(this).inflate(R.layout.new_course_btn, coursesLayout, false);
         coursesLayout.addView(newCourseBtn);

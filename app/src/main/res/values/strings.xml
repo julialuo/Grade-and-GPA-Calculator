@@ -4,4 +4,5 @@
     <string name="title_activity_courses">Courses Activity</string>
     <string name="title_activity_grades">Grades</string>
     <string name="title_activity_add_grade">Add Grade</string>
+    <string name="title_activity_grade_details">Grade</string>
 </resources>

@@ -30,6 +30,7 @@ public class AddGradeActivity extends AppCompatActivity {
     }
 
     public void addGrade(View view) {
+        //BULLETPROOF FOR INVALID INPUT
         EditText editAssignmentName = (EditText) findViewById(R.id.edit_assignment_name);
         EditText editGrade = (EditText) findViewById(R.id.edit_grade);
         EditText editWeight = (EditText) findViewById(R.id.edit_weight);
