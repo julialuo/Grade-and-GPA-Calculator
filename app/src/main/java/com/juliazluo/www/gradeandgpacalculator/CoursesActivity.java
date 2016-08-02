@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,9 +16,8 @@ import java.util.ArrayList;
 
 public class CoursesActivity extends AppCompatActivity {
 
-    ArrayList<Course> courses = new ArrayList<Course>();
-    ArrayList<String> courseNames = new ArrayList<String>();
-    ArrayAdapter adapter;
+    ArrayList<Course> courses;
+    CoursesListAdapter adapter;
     DatabaseHelper db;
     public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
 
@@ -33,13 +32,10 @@ public class CoursesActivity extends AppCompatActivity {
         setTitle("Courses");
 
         db = new DatabaseHelper(this);
+        courses = new ArrayList<Course>();
         courses = db.getAllCourses();
 
-        for(Course course: courses) {
-            courseNames.add(course.getName());
-        }
-
-        adapter = new ArrayAdapter<String>(this, R.layout.courses_list_item, courseNames);
+        adapter = new CoursesListAdapter(this, courses);
         ListView listView = (ListView) findViewById(R.id.courses_list);
         listView.setAdapter(adapter);
 
@@ -82,8 +78,8 @@ public class CoursesActivity extends AppCompatActivity {
         EditText editCourseName = (EditText) findViewById(R.id.edit_course_name);
         String courseName = editCourseName.getText().toString();
         db.addCourse(courseName);
-        courses = db.getAllCourses();
-        courseNames.add(courseName);
+        courses.clear();
+        courses.addAll(db.getAllCourses());
         adapter.notifyDataSetChanged();
         cancelAdd(view);
     }
