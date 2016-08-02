@@ -7,15 +7,15 @@ public class Course {
 
     private long id;
     private String name;
-    private int average; //MAKE THIS DOUBLE IF DATABASE ALLOWS
+    private double average;
 
-    public Course(long id, String name, int average) {
+    public Course(long id, String name, double average) {
         this.id = id;
         this.name = name;
         this.average = average;
     }
 
-    public Course(String name, int average) {
+    public Course(String name, double average) {
         this.name = name;
         this.average = average;
     }
@@ -28,11 +28,11 @@ public class Course {
         this.id = id;
     }
 
-    public int getAverage() {
+    public double getAverage() {
         return average;
     }
 
-    public void setAverage(int average) {
+    public void setAverage(double average) {
         this.average = average;
     }
 

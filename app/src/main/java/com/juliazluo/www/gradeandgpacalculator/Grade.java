@@ -8,17 +8,17 @@ public class Grade {
     private long id;
     private long courseID;
     private String assignmentName;
-    private int grade; //MAKE THIS DOUBLE IF DATABASE ALLOWS
+    private double grade;
     private int weight;
 
-    public Grade(long courseID, String assignmentName, int grade, int weight) {
+    public Grade(long courseID, String assignmentName, double grade, int weight) {
         this.courseID = courseID;
         this.assignmentName = assignmentName;
         this.grade = grade;
         this.weight = weight;
     }
 
-    public Grade(long id, long courseID, String assignmentName, int grade, int weight) {
+    public Grade(long id, long courseID, String assignmentName, double grade, int weight) {
 
         this.id = id;
         this.courseID = courseID;
@@ -51,11 +51,11 @@ public class Grade {
         this.assignmentName = assignmentName;
     }
 
-    public int getGrade() {
+    public double getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(double grade) {
         this.grade = grade;
     }
 

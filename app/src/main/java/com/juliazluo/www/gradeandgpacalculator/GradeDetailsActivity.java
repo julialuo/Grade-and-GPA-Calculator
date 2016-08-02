@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class GradeDetailsActivity extends AppCompatActivity {
     DatabaseHelper db;
     Grade grade;
     public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
+    public static String GRADE_ID = "com.juliazluo.www.gradeandgpacalculator.GRADE_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,16 @@ public class GradeDetailsActivity extends AppCompatActivity {
 
     public void deleteGrade(View view) {
         Intent intent = new Intent(GradeDetailsActivity.this, GradesActivity.class);
-        intent.putExtra(COURSE_ID, grade.getCourseID());
+        intent.putExtra(COURSE_ID, grade.getId());
         startActivity(intent);
 
         db.deleteGrade(grade);
+    }
+
+    public void changeGrade(View view) {
+        Intent intent = new Intent(GradeDetailsActivity.this, ChangeGradeActivity.class);
+        intent.putExtra(GRADE_ID, grade.getId());
+        startActivity(intent);
     }
 
     @Override
