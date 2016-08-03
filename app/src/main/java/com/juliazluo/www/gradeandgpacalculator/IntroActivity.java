@@ -48,4 +48,9 @@ public class IntroActivity extends AppCompatActivity {
         Intent intent = new Intent(IntroActivity.this, CoursesActivity.class);
         startActivity(intent);
     }
+
+    public void toGPA(View view) {
+        Intent intent = new Intent(IntroActivity.this, GPAActivity.class);
+        startActivity(intent);
+    }
 }

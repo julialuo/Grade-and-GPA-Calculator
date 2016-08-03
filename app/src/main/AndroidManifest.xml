@@ -63,6 +63,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.juliazluo.www.gradeandgpacalculator.GradeDetailsActivity" />
         </activity>
+        <activity
+            android:name=".GPAActivity"
+            android:label="@string/title_activity_gpa"
+            android:parentActivityName=".IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.juliazluo.www.gradeandgpacalculator.IntroActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -36,7 +36,11 @@ public class CoursesListAdapter extends ArrayAdapter<Course> {
         TextView courseAverage = (TextView) rowView.findViewById(R.id.course_list_average);
 
         courseName.setText(courses.get(position).getName());
-        courseAverage.setText(String.valueOf(round.format(courses.get(position).getAverage())) + "%");
+
+        if (courses.get(position).getAverage() == -1)
+            courseAverage.setText("N/A");
+        else
+            courseAverage.setText(String.valueOf(round.format(courses.get(position).getAverage())) + "%");
 
         return rowView;
     }

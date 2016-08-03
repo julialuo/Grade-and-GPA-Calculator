@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/grades_list_name"
+        android:id="@+id/blank_1"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -16,23 +16,23 @@
     </TextView>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/grades_list_grade"
+        android:id="@+id/blank_2"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
         android:layout_alignParentRight="true"
-        android:text="Test">
+        android:text="91% (A)">
     </TextView>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/grades_list_weight"
+        android:id="@+id/blank_3"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
         android:textSize="16dip"
         android:layout_alignParentRight="true"
-        android:text="Hey">
+        android:text="GPA Score: bla">
     </TextView>
 
 </LinearLayout>

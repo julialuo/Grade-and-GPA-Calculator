@@ -27,11 +27,11 @@ public class GradesListAdapter extends ArrayAdapter<Grade> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.grades_list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.grades_gpa_list_item, parent, false);
 
-        TextView assignmentName = (TextView) rowView.findViewById(R.id.grades_list_name);
-        TextView grade = (TextView) rowView.findViewById(R.id.grades_list_grade);
-        TextView weight = (TextView) rowView.findViewById(R.id.grades_list_weight);
+        TextView assignmentName = (TextView) rowView.findViewById(R.id.blank_1);
+        TextView grade = (TextView) rowView.findViewById(R.id.blank_2);
+        TextView weight = (TextView) rowView.findViewById(R.id.blank_3);
 
         assignmentName.setText(grades.get(position).getAssignmentName());
         grade.setText(String.valueOf(grades.get(position).getGrade()) + "%");
