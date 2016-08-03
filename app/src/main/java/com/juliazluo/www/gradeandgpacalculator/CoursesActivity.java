@@ -76,8 +76,11 @@ public class CoursesActivity extends AppCompatActivity {
 
     public void addCourse(View view) {
         EditText editCourseName = (EditText) findViewById(R.id.edit_course_name);
+        EditText editCredits = (EditText) findViewById(R.id.edit_credits);
         String courseName = editCourseName.getText().toString();
-        db.addCourse(courseName);
+        double credits = Double.parseDouble(editCredits.getText().toString());
+
+        db.addCourse(courseName, credits);
         courses.clear();
         courses.addAll(db.getAllCourses());
         adapter.notifyDataSetChanged();

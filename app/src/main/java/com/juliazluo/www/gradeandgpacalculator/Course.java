@@ -7,17 +7,19 @@ public class Course {
 
     private long id;
     private String name;
-    private double average;
+    private double average, credits;
 
-    public Course(long id, String name, double average) {
+    public Course(long id, String name, double average, double credits) {
         this.id = id;
         this.name = name;
         this.average = average;
+        this.credits = credits;
     }
 
-    public Course(String name, double average) {
+    public Course(String name, double average, double credits) {
         this.name = name;
         this.average = average;
+        this.credits = credits;
     }
 
     public long getId() {
@@ -42,5 +44,13 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getCredits() {
+        return credits;
+    }
+
+    public void setCredits(double credits) {
+        this.credits = credits;
     }
 }

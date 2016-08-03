@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -14,43 +15,104 @@ import java.util.ArrayList;
 /**
  * Created by julia on 2016-08-02.
  */
-public class GPAListAdapter extends ArrayAdapter<Course> {
-
-    //ADD CONCEPT OF CREDIT HOURS INTO CALCULATOR
+public class GPAListAdapter extends BaseExpandableListAdapter {
 
     private final Context context;
-    private final ArrayList<Course> courses;
+    private ArrayList<Course> courses;
 
     public GPAListAdapter(Context context, ArrayList<Course> courseItems) {
-        super(context, R.layout.grades_gpa_list_item, courseItems);
         this.context = context;
         this.courses = courseItems;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getChildView(int groupPosition, final int childPosition,
+                             boolean isLastChild, View convertView, ViewGroup parent) {
+
         NumberFormat round = new DecimalFormat("#0.00");
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.grades_gpa_list_item, parent, false);
-
-        TextView courseName = (TextView) rowView.findViewById(R.id.blank_1);
-        TextView courseGrade = (TextView) rowView.findViewById(R.id.blank_2);
-        TextView courseGP = (TextView) rowView.findViewById(R.id.blank_3);
-
-        ConvertPercentage convert = new ConvertPercentage(courses.get(position).getAverage());
-
-        courseName.setText(courses.get(position).getName());
-
-        if (courses.get(position).getAverage() == -1) {
-            courseGrade.setText("N/A");
-            courseGP.setText("GP value: N/A");
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) this.context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.item_details, null);
         }
-        else {
-            courseGrade.setText(String.valueOf(round.format(courses.get(position).getAverage())) + "% (" + convert.getLetterGrade() + ")");
+
+        TextView averageDetails = (TextView) convertView.findViewById(R.id.details_1);
+        TextView creditDetails = (TextView) convertView.findViewById(R.id.details_2);
+
+        ConvertPercentage convert = new ConvertPercentage(courses.get(groupPosition).getAverage());
+
+        if (courses.get(groupPosition).getAverage() != -1)
+            averageDetails.setText("Grade: " + round.format(courses.get(groupPosition).getAverage())
+                    + "% (" + convert.getLetterGrade() + ")");
+        else
+            averageDetails.setText("Grade: N/A");
+        creditDetails.setText("Credits: " + courses.get(groupPosition).getCredits());
+
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+    @Override
+    public int getGroupCount() {
+        return courses.size();
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        return 1;
+    }
+
+    @Override
+    public Object getGroup(int groupPosition) {
+        return courses.get(groupPosition);
+    }
+
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return courses.get(groupPosition).getId();
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return 0;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded,
+                             View convertView, ViewGroup parent) {
+
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) this.context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.expandable_list_item, null);
+        }
+
+        TextView courseName = (TextView) convertView.findViewById(R.id.expandable_blank_1);
+        TextView courseGP = (TextView) convertView.findViewById(R.id.expandable_blank_2);
+        ConvertPercentage convert = new ConvertPercentage(courses.get(groupPosition).getAverage());
+
+        courseName.setText(courses.get(groupPosition).getName());
+
+        if (courses.get(groupPosition).getAverage() == -1)
+            courseGP.setText("GP: N/A");
+        else
             courseGP.setText("GP: " + String.valueOf(convert.getGp()));
-        }
 
-        return rowView;
+        return convertView;
     }
 }

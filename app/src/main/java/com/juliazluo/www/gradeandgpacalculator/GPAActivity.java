@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,23 +31,23 @@ public class GPAActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         courses = db.getAllCourses();
         adapter = new GPAListAdapter(this, courses);
-        ListView listView = (ListView) findViewById(R.id.GPA_list);
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.GPA_list);
         listView.setAdapter(adapter);
 
         double totalGP = 0, GPA;
-        int noCourses = 0;
+        double totalCredits = 0;
         ConvertPercentage convert;
         NumberFormat round = new DecimalFormat("#0.00");
 
         for (Course course: courses) {
             if (course.getAverage() != -1) {
                 convert = new ConvertPercentage(course.getAverage());
-                totalGP += convert.getGp();
-                noCourses ++;
+                totalGP += convert.getGp() * course.getCredits();
+                totalCredits += course.getCredits();
             }
         }
 
-        GPA = totalGP/noCourses;
+        GPA = totalGP/totalCredits;
         TextView GPAText = (TextView) findViewById(R.id.GPA_text);
         GPAText.setText("GPA: " + round.format(GPA));
     }

@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class CoursesListAdapter extends ArrayAdapter<Course> {
 
     private final Context context;
-    private final ArrayList<Course> courses;
+    private ArrayList<Course> courses;
 
     public CoursesListAdapter(Context context, ArrayList<Course> courseItems) {
-        super(context, R.layout.courses_list_item, courseItems);
+        super(context, R.layout.list_item, courseItems);
         this.context = context;
         this.courses = courseItems;
     }
@@ -30,12 +30,14 @@ public class CoursesListAdapter extends ArrayAdapter<Course> {
         NumberFormat round = new DecimalFormat("#0.00");
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.courses_list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.list_item, parent, false);
 
-        TextView courseName = (TextView) rowView.findViewById(R.id.course_list_name);
-        TextView courseAverage = (TextView) rowView.findViewById(R.id.course_list_average);
+        TextView courseName = (TextView) rowView.findViewById(R.id.blank_1);
+        TextView courseCredits = (TextView) rowView.findViewById(R.id.blank_2);
+        TextView courseAverage = (TextView) rowView.findViewById(R.id.blank_3);
 
         courseName.setText(courses.get(position).getName());
+        courseCredits.setText("Credits: " + String.valueOf(courses.get(position).getCredits()));
 
         if (courses.get(position).getAverage() == -1)
             courseAverage.setText("N/A");

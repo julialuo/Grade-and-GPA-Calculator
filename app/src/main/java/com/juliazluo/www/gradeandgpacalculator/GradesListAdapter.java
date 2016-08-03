@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public class GradesListAdapter extends ArrayAdapter<Grade> {
 
     private final Context context;
-    private final ArrayList<Grade> grades;
+    private ArrayList<Grade> grades;
 
     public GradesListAdapter(Context context, ArrayList<Grade> gradeItems) {
-        super(context, R.layout.courses_list_item, gradeItems);
+        super(context, R.layout.list_item, gradeItems);
         this.context = context;
         this.grades = gradeItems;
     }
@@ -27,15 +27,15 @@ public class GradesListAdapter extends ArrayAdapter<Grade> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.grades_gpa_list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.list_item, parent, false);
 
         TextView assignmentName = (TextView) rowView.findViewById(R.id.blank_1);
-        TextView grade = (TextView) rowView.findViewById(R.id.blank_2);
-        TextView weight = (TextView) rowView.findViewById(R.id.blank_3);
+        TextView weight = (TextView) rowView.findViewById(R.id.blank_2);
+        TextView grade = (TextView) rowView.findViewById(R.id.blank_3);
 
         assignmentName.setText(grades.get(position).getAssignmentName());
+        weight.setText("Weight: " + String.valueOf(grades.get(position).getWeight()) + "/" + GradesActivity.totalWeight);
         grade.setText(String.valueOf(grades.get(position).getGrade()) + "%");
-        weight.setText(String.valueOf(grades.get(position).getWeight()) + "/" + GradesActivity.totalWeight);
 
         return rowView;
     }
