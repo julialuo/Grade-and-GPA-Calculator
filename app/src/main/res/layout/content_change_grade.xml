@@ -57,7 +57,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Change grade"
+        android:text="Confirm change"
         android:onClick="confirmChange"/>
 
 </LinearLayout>

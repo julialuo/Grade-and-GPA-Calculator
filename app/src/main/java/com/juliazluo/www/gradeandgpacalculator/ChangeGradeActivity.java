@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ChangeGradeActivity extends AppCompatActivity {
 
@@ -43,18 +44,62 @@ public class ChangeGradeActivity extends AppCompatActivity {
         EditText changeAssignmentName = (EditText) findViewById(R.id.edit_change_assignment_name);
         EditText changeGrade = (EditText) findViewById(R.id.edit_change_grade);
         EditText changeWeight = (EditText) findViewById(R.id.edit_change_weight);
-        String assignmentName = changeAssignmentName.getText().toString();
-        double assignmentGrade = Double.parseDouble(changeGrade.getText().toString());
-        int weight = Integer.parseInt(changeWeight.getText().toString());
+        String assignmentName = changeAssignmentName.getText().toString().trim();
+        String gradeStr = changeGrade.getText().toString().trim();
+        String weightStr = changeWeight.getText().toString().trim();
+        double gradeValue = -1;
+        int weight = -1;
+        boolean validInput = true;
 
-        grade.setAssignmentName(assignmentName);
-        grade.setGrade(assignmentGrade);
-        grade.setWeight(weight);
-        db.updateGrade(grade);
+        if (assignmentName.equals("") || gradeStr.equals("") ||
+                weightStr.trim().equals("")) {
+            Toast.makeText(this, "Please fill all blanks", Toast.LENGTH_LONG).show();
+            validInput = false;
+        }
 
-        Intent intent = new Intent(ChangeGradeActivity.this, GradeDetailsActivity.class);
-        intent.putExtra(GRADE_ID, grade.getId());
-        startActivity(intent);
+        else {
+            boolean gradeError = true; //used to tell where potential exception occurred
+
+            try {
+                gradeValue = Double.parseDouble(gradeStr);
+                gradeError = false;
+                weight = Integer.parseInt(weightStr);
+
+                if (gradeValue < 0 || gradeValue > 100) {
+                    Toast.makeText(this, "The grade must be a numerical value between 0 and 100",
+                            Toast.LENGTH_LONG).show();
+                    validInput = false;
+                }
+
+                else if (weight <= 0) {
+                    Toast.makeText(this, "The weight must be a positive whole number",
+                            Toast.LENGTH_LONG).show();
+                    validInput = false;
+                }
+
+            }
+            catch (NumberFormatException e) {
+                if (gradeError)
+                    Toast.makeText(this, "The grade must be a numerical value between 0 and 100",
+                            Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(this, "The weight must be a positive whole number",
+                            Toast.LENGTH_LONG).show();
+
+                validInput = false;
+            }
+        }
+
+        if (validInput) {
+            grade.setAssignmentName(assignmentName);
+            grade.setGrade(gradeValue);
+            grade.setWeight(weight);
+            db.updateGrade(grade);
+
+            Intent intent = new Intent(ChangeGradeActivity.this, GradeDetailsActivity.class);
+            intent.putExtra(GRADE_ID, grade.getId());
+            startActivity(intent);
+        }
     }
 
     @Override

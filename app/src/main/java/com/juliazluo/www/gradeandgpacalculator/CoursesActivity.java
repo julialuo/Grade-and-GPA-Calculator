@@ -11,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class CoursesActivity extends AppCompatActivity {
@@ -77,13 +79,38 @@ public class CoursesActivity extends AppCompatActivity {
     public void addCourse(View view) {
         EditText editCourseName = (EditText) findViewById(R.id.edit_course_name);
         EditText editCredits = (EditText) findViewById(R.id.edit_credits);
-        String courseName = editCourseName.getText().toString();
-        double credits = Double.parseDouble(editCredits.getText().toString());
+        String courseName = editCourseName.getText().toString().trim();
+        String creditsStr = editCredits.getText().toString().trim();
+        double credits = -1;
+        boolean validInput = true;
 
-        db.addCourse(courseName, credits);
-        courses.clear();
-        courses.addAll(db.getAllCourses());
-        adapter.notifyDataSetChanged();
-        cancelAdd(view);
+        if (courseName.equals("") || creditsStr.equals("")) {
+            Toast.makeText(this, "Please fill all blanks", Toast.LENGTH_LONG).show();
+            validInput = false;
+        }
+        else {
+            try {
+                credits = Double.parseDouble(creditsStr);
+
+                if (credits <= 0) {
+                    Toast.makeText(this, "Please enter a positive number for the credits",
+                            Toast.LENGTH_LONG).show();
+                    validInput = false;
+                }
+            }
+            catch (NumberFormatException e) {
+                Toast.makeText(this, "Please enter a positive number for the credits",
+                        Toast.LENGTH_LONG).show();
+                validInput = false;
+            }
+        }
+
+        if (validInput) {
+            db.addCourse(courseName, Double.parseDouble(creditsStr));
+            courses.clear();
+            courses.addAll(db.getAllCourses());
+            adapter.notifyDataSetChanged();
+            cancelAdd(view);
+        }
     }
 }

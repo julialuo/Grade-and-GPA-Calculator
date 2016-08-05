@@ -1,9 +1,11 @@
 package com.juliazluo.www.gradeandgpacalculator;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -42,11 +44,34 @@ public class GradeDetailsActivity extends AppCompatActivity {
     }
 
     public void deleteGrade(View view) {
-        Intent intent = new Intent(GradeDetailsActivity.this, GradesActivity.class);
-        intent.putExtra(COURSE_ID, grade.getId());
-        startActivity(intent);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage("Are you sure you wish to delete '" + grade.getAssignmentName() +
+                "'?");
+        alertBuilder.setCancelable(true);
 
-        db.deleteGrade(grade);
+        alertBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        Intent intent = new Intent(GradeDetailsActivity.this, GradesActivity.class);
+                        intent.putExtra(COURSE_ID, grade.getId());
+                        startActivity(intent);
+
+                        db.deleteGrade(grade);
+                    }
+                });
+
+        alertBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = alertBuilder.create();
+        alert.show();
     }
 
     public void changeGrade(View view) {

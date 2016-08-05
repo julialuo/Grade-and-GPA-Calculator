@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddGradeActivity extends AppCompatActivity {
 
@@ -31,18 +32,73 @@ public class AddGradeActivity extends AppCompatActivity {
     }
 
     public void addGrade(View view) {
-        //BULLETPROOF FOR INVALID INPUT LATER
         EditText editAssignmentName = (EditText) findViewById(R.id.edit_assignment_name);
         EditText editGrade = (EditText) findViewById(R.id.edit_grade);
         EditText editWeight = (EditText) findViewById(R.id.edit_weight);
-        String assignmentName = editAssignmentName.getText().toString();
-        double assignmentGrade = Double.parseDouble(editGrade.getText().toString());
-        int weight = Integer.parseInt(editWeight.getText().toString());
+        String assignmentName = editAssignmentName.getText().toString().trim();
+        String gradeStr = editGrade.getText().toString().trim();
+        String weightStr = editWeight.getText().toString().trim();
+        double grade = -1;
+        int weight = -1;
+        boolean validInput = true;
 
-        db.addGrade(courseID, assignmentName, assignmentGrade, weight);
-        Intent intent = new Intent(AddGradeActivity.this, GradesActivity.class);
-        intent.putExtra(COURSE_ID, courseID);
-        startActivity(intent);
+        if (assignmentName.equals("") || gradeStr.equals("") ||
+                weightStr.trim().equals("")) {
+            Toast.makeText(this, "Please fill all blanks", Toast.LENGTH_LONG).show();
+            validInput = false;
+        }
+
+        else {
+            boolean gradeError = true; //used to tell where potential exception occurred
+
+            try {
+                grade = Double.parseDouble(gradeStr);
+                gradeError = false;
+                weight = Integer.parseInt(weightStr);
+
+                if (grade < 0 || grade > 100) {
+                    Toast.makeText(this, "The grade must be a numerical value between 0 and 100",
+                            Toast.LENGTH_LONG).show();
+                    validInput = false;
+                }
+
+                else if (weight <= 0) {
+                    Toast.makeText(this, "The weight must be a positive whole number",
+                            Toast.LENGTH_LONG).show();
+                    validInput = false;
+                }
+
+            }
+            catch (NumberFormatException e) {
+                if (gradeError)
+                    Toast.makeText(this, "The grade must be a numerical value between 0 and 100",
+                            Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(this, "The weight must be a positive whole number",
+                            Toast.LENGTH_LONG).show();
+
+                validInput = false;
+            }
+        }
+
+        if (validInput) {
+            db.addGrade(courseID, assignmentName, grade, weight);
+            Intent intent = new Intent(AddGradeActivity.this, GradesActivity.class);
+            intent.putExtra(COURSE_ID, courseID);
+            startActivity(intent);
+        }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(AddGradeActivity.this, GradesActivity.class);
+                intent.putExtra(COURSE_ID, courseID);
+                startActivity(intent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
