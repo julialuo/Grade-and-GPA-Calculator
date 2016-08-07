@@ -8,7 +8,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Change course"
+        android:text="Edit course"
         android:onClick="changeCourse"/>
 
 </LinearLayout>

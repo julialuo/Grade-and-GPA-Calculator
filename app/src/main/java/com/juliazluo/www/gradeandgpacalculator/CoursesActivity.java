@@ -22,6 +22,7 @@ public class CoursesActivity extends AppCompatActivity {
     CoursesListAdapter adapter;
     DatabaseHelper db;
     public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
+    public static String HELP_TYPE = "com.juliazluo.www.gradeandgpacalculator.HELP_TYPE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,5 +113,17 @@ public class CoursesActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             cancelAdd(view);
         }
+    }
+
+    public void creditHelp (View view) {
+        Intent intent = new Intent(CoursesActivity.this, HelpActivity.class);
+        intent.putExtra(HELP_TYPE, "Credit");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CoursesActivity.this, IntroActivity.class);
+        startActivity(intent);
     }
 }

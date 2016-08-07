@@ -17,6 +17,7 @@ public class AddGradeActivity extends AppCompatActivity {
     DatabaseHelper db;
     long courseID;
     public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
+    public static String HELP_TYPE = "com.juliazluo.www.gradeandgpacalculator.HELP_TYPE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,18 @@ public class AddGradeActivity extends AppCompatActivity {
             intent.putExtra(COURSE_ID, courseID);
             startActivity(intent);
         }
+    }
+
+    public void gradeHelp (View view) {
+        Intent intent = new Intent(AddGradeActivity.this, HelpActivity.class);
+        intent.putExtra(HELP_TYPE, "Grade");
+        startActivity(intent);
+    }
+
+    public void weightHelp (View view) {
+        Intent intent = new Intent(AddGradeActivity.this, HelpActivity.class);
+        intent.putExtra(HELP_TYPE, "Weight");
+        startActivity(intent);
     }
 
     @Override

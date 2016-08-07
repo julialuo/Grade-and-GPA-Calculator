@@ -26,13 +26,15 @@
         <EditText
             android:id="@+id/edit_change_grade"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Help"/>
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_help_outline_black_24dp"
+            android:onClick="gradeHelp"/>
 
     </LinearLayout>
 
@@ -44,13 +46,15 @@
         <EditText
             android:id="@+id/edit_change_weight"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Help"/>
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_help_outline_black_24dp"
+            android:onClick="weightHelp"/>
 
     </LinearLayout>
 

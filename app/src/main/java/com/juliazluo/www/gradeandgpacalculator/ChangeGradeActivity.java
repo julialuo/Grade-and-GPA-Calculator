@@ -18,6 +18,7 @@ public class ChangeGradeActivity extends AppCompatActivity {
     DatabaseHelper db;
     Grade grade;
     public static String GRADE_ID = "com.juliazluo.www.gradeandgpacalculator.GRADE_ID";
+    public static String HELP_TYPE = "com.juliazluo.www.gradeandgpacalculator.HELP_TYPE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class ChangeGradeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Edit Grade");
 
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
@@ -100,6 +102,18 @@ public class ChangeGradeActivity extends AppCompatActivity {
             intent.putExtra(GRADE_ID, grade.getId());
             startActivity(intent);
         }
+    }
+
+    public void gradeHelp (View view) {
+        Intent intent = new Intent(ChangeGradeActivity.this, HelpActivity.class);
+        intent.putExtra(HELP_TYPE, "Grade");
+        startActivity(intent);
+    }
+
+    public void weightHelp (View view) {
+        Intent intent = new Intent(ChangeGradeActivity.this, HelpActivity.class);
+        intent.putExtra(HELP_TYPE, "Weight");
+        startActivity(intent);
     }
 
     @Override
