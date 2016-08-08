@@ -24,70 +24,78 @@
             android:id="@+id/credits_help_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:padding="10dp"
+            android:textSize="24dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
             android:text="Credits"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:padding="5dp"
             android:text="Also known as units or credit hours, this is often the number of hours of class that a course has per week. It also determines how heavily a class is weighted in a weighted GPA scale, as a higher credit course will be taken more into account."/>
 
         <TextView
             android:id="@+id/grade_help_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:padding="10dp"
+            android:textSize="24dp"
+            android:padding="5dp"
             android:text="Grade"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:padding="5dp"
             android:text="This is the grade that you received on the assignment as a percentage, which can be calculated by dividing the number of marks you earned by the total number of marks. It can be any numerical value between 0 and 100. "/>
 
         <TextView
             android:id="@+id/weight_help_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:padding="10dp"
+            android:textSize="24dp"
+            android:padding="5dp"
             android:text="Weight"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:padding="5dp"
             android:text="This represents how much the assignment is worth. The assignment's weight divided by the total weight of all the assignments determine what fraction of the course mark the assignment is worth. It can be any positive whole number value."/>
 
         <TextView
             android:id="@+id/weighted_GPA_help_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:padding="10dp"
+            android:textSize="24dp"
+            android:padding="5dp"
             android:text="Weighted GPA"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:padding="5dp"
             android:text="Weighted GPA takes into account credits. It is calculated by multiplying the grade point (GP) value for each course by its number of credits, and then dividing that by the total number of credits. "/>
 
         <TextView
             android:id="@+id/unweighted_GPA_help_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:padding="10dp"
+            android:textSize="24dp"
+            android:padding="5dp"
             android:text="Unweighted GPA"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:padding="5dp"
             android:text="Unweighted GPA does not take into account credits. It simply adds up the grade point (GP) values for each course then divides that by the total number of courses."/>
     </LinearLayout>
 

@@ -28,7 +28,11 @@
             android:id="@+id/weighted_GPA_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
 
         <ImageButton
             android:layout_width="24dp"
@@ -47,7 +51,9 @@
             android:id="@+id/unweighted_GPA_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:paddingLeft="8dp"/>
 
         <ImageButton
             android:layout_width="24dp"
