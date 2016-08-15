@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
@@ -99,11 +98,11 @@ public class GPAListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.expandable_list_item, null);
+            convertView = inflater.inflate(R.layout.gpa_list_item, null);
         }
 
-        TextView courseName = (TextView) convertView.findViewById(R.id.expandable_blank_1);
-        TextView courseGP = (TextView) convertView.findViewById(R.id.expandable_blank_2);
+        TextView courseName = (TextView) convertView.findViewById(R.id.GPA_list_name);
+        TextView courseGP = (TextView) convertView.findViewById(R.id.GPA_list_score);
         ConvertPercentage convert = new ConvertPercentage(courses.get(groupPosition).getAverage());
 
         courseName.setText(courses.get(groupPosition).getName());

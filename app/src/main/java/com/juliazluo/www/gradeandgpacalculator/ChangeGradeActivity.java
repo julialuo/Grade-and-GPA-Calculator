@@ -17,7 +17,7 @@ public class ChangeGradeActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     Grade grade;
-    public static String GRADE_ID = "com.juliazluo.www.gradeandgpacalculator.GRADE_ID";
+    public static String COURSE_ID = "com.juliazluo.www.gradeandgpacalculator.COURSE_ID";
     public static String HELP_TYPE = "com.juliazluo.www.gradeandgpacalculator.HELP_TYPE";
 
     @Override
@@ -31,7 +31,7 @@ public class ChangeGradeActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
-        long gradeID = intent.getExtras().getLong(GradeDetailsActivity.GRADE_ID);
+        long gradeID = intent.getExtras().getLong(GradesActivity.GRADE_ID);
         grade = db.getGrade(gradeID);
 
         EditText changeAssignmentName = (EditText) findViewById(R.id.edit_change_assignment_name);
@@ -98,8 +98,8 @@ public class ChangeGradeActivity extends AppCompatActivity {
             grade.setWeight(weight);
             db.updateGrade(grade);
 
-            Intent intent = new Intent(ChangeGradeActivity.this, GradeDetailsActivity.class);
-            intent.putExtra(GRADE_ID, grade.getId());
+            Intent intent = new Intent(ChangeGradeActivity.this, GradesActivity.class);
+            intent.putExtra(COURSE_ID, grade.getCourseID());
             startActivity(intent);
         }
     }
@@ -120,8 +120,8 @@ public class ChangeGradeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(ChangeGradeActivity.this, GradeDetailsActivity.class);
-                intent.putExtra(GRADE_ID, grade.getId());
+                Intent intent = new Intent(ChangeGradeActivity.this, GradesActivity.class);
+                intent.putExtra(COURSE_ID, grade.getCourseID());
                 startActivity(intent);
                 return true;
         }

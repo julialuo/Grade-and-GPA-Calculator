@@ -39,6 +39,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/ic_info_outline_black_24dp"
+            android:backgroundTint="#8c8c8c"
             android:onClick="weightedGPAHelp"/>
 
     </LinearLayout>
@@ -60,6 +61,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/ic_info_outline_black_24dp"
+            android:backgroundTint="#8c8c8c"
             android:onClick="unweightedGPAHelp"/>
 
     </LinearLayout>
