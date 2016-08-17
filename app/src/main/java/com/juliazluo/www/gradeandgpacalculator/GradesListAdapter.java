@@ -1,15 +1,18 @@
 package com.juliazluo.www.gradeandgpacalculator;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -25,11 +28,12 @@ public class GradesListAdapter extends BaseExpandableListAdapter {
     private final Context context;
     private ArrayList<Grade> grades;
     private NumberFormat round = new DecimalFormat("#0.00");
-    public static String GRADE_ID = "com.juliazluo.www.gradeandgpacalculator.GRADE_ID";
+    private Activity activity;
 
-    public GradesListAdapter(Context context, ArrayList<Grade> gradeItems) {
+    public GradesListAdapter(Context context, ArrayList<Grade> gradeItems, Activity activity) {
         this.context = context;
         this.grades = gradeItems;
+        this.activity = activity;
     }
 
     @Override
@@ -136,6 +140,14 @@ public class GradesListAdapter extends BaseExpandableListAdapter {
                                 db.deleteGrade(grades.get(groupPosition));
                                 grades.remove(groupPosition);
                                 notifyDataSetChanged();
+
+                                if (grades.size() == 0) {
+                                    LinearLayout gradesLayout = (LinearLayout) activity.findViewById(R.id.grades);
+                                    TextView message = new TextView(context);
+                                    message.setText("There are no grades for this course yet.");
+                                    message.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+                                    gradesLayout.addView(message, 0);
+                                }
                             }
                         });
 

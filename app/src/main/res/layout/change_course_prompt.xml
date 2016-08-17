@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Enter course name"/>
+            android:hint="Enter course name"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enter credit hours"/>
+            android:hint="Enter credit hours"/>
 
         <ImageButton
             android:layout_width="24dp"

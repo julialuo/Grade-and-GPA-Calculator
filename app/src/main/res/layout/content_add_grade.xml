@@ -17,7 +17,7 @@
         android:id="@+id/edit_assignment_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter assignment name"/>
+        android:hint="Enter assignment name"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enter grade (%)"/>
+            android:hint="Enter grade (%)"/>
 
         <ImageButton
             android:layout_width="24dp"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enter weight"/>
+            android:hint="Enter weight"/>
 
         <ImageButton
             android:layout_width="24dp"

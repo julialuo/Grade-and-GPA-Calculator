@@ -6,8 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +38,14 @@ public class GPAActivity extends AppCompatActivity {
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.GPA_list);
         listView.setAdapter(adapter);
 
+        if (courses.size() == 0) {
+            LinearLayout GPALayout = (LinearLayout) findViewById(R.id.GPA);
+            TextView message = new TextView(this);
+            message.setText("You need to add your courses first before calculating GPA.");
+            message.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+            GPALayout.addView(message, 0);
+        }
+
         double totalWeightedGP = 0, totalUnweightedGP = 0, weightedGPA, unweightedGPA;
         int totalCourses = 0;
         double totalCredits = 0;
@@ -52,12 +62,20 @@ public class GPAActivity extends AppCompatActivity {
             }
         }
 
-        weightedGPA = totalWeightedGP/totalCredits;
-        unweightedGPA = totalUnweightedGP/totalCourses;
         TextView weightedGPAText = (TextView) findViewById(R.id.weighted_GPA_text);
         TextView unweightedGPAText = (TextView) findViewById(R.id.unweighted_GPA_text);
-        weightedGPAText.setText("Weighted GPA: " + round.format(weightedGPA));
-        unweightedGPAText.setText("Unweighted GPA: " + round.format(unweightedGPA));
+
+        if (totalCourses == 0) {
+            weightedGPAText.setText("Weighted GPA: N/A");
+            unweightedGPAText.setText("Unweighted GPA: N/A");
+        }
+        else {
+            weightedGPA = totalWeightedGP / totalCredits;
+            unweightedGPA = totalUnweightedGP / totalCourses;
+
+            weightedGPAText.setText("Weighted GPA: " + round.format(weightedGPA));
+            unweightedGPAText.setText("Unweighted GPA: " + round.format(unweightedGPA));
+        }
     }
 
     public void weightedGPAHelp (View view) {

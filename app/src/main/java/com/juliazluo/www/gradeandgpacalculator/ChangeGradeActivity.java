@@ -37,9 +37,9 @@ public class ChangeGradeActivity extends AppCompatActivity {
         EditText changeAssignmentName = (EditText) findViewById(R.id.edit_change_assignment_name);
         EditText changeGrade = (EditText) findViewById(R.id.edit_change_grade);
         EditText changeWeight = (EditText) findViewById(R.id.edit_change_weight);
-        changeAssignmentName.setText(grade.getAssignmentName());
-        changeGrade.setText(String.valueOf(grade.getGrade()));
-        changeWeight.setText(String.valueOf(grade.getWeight()));
+        changeAssignmentName.setHint(grade.getAssignmentName());
+        changeGrade.setHint(String.valueOf(grade.getGrade()));
+        changeWeight.setHint(String.valueOf(grade.getWeight()));
     }
 
     public void confirmChange(View view) {
